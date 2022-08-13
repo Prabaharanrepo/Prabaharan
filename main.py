@@ -4,8 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
+    "https://isaiambalam.herokuapp.com/",
+    "http://isaiambalam.herokuapp.com/",
     "http://localhost",
     "http://localhost:8080",
 ]
