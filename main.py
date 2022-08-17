@@ -12,8 +12,8 @@ from pydantic import BaseModel
 app = FastAPI()
 
 origins = [
-    "https://isaiambalam.herokuapp.com/",
-    "http://isaiambalam.herokuapp.com/",
+    "https://c3streamfastapi.herokuapp.com",
+    "http://isaiambalam.herokuapp.com/items/",
     "http://localhost",
     "http://localhost:8080",
 ]
