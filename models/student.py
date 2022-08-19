@@ -14,8 +14,8 @@ class Student(Document):
     class Config:
         schema_extra = {
             "example": {
-                "fullname": "Abdulazeez Abdulazeez Adeshina",
-                "email": "abdul@school.com",
+                "fullname": "prabaharan",
+                "email": "prabaharan.auroville@gmail.com",
                 "course_of_study": "Water resources engineering",
                 "year": 4,
                 "gpa": "3.76"
@@ -36,8 +36,8 @@ class UpdateStudentModel(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "fullname": "Abdulazeez Abdulazeez",
-                "email": "abdul@school.com",
+                "fullname": "prabaharan",
+                "email": "prabaharan.auroville@gmail.com",
                 "course_of_study": "Water resources and environmental engineering",
                 "year": 4,
                 "gpa": "5.0"

@@ -1,40 +1,24 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime
-from typing import Union
-from fastapi.responses import ORJSONResponse
+from fastapi import FastAPI, Depends
 
-from fastapi import FastAPI
-from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from auth.jwt_bearer import JWTBearer
+from config.config import initiate_database
+from routes.admin import router as AdminRouter
+from routes.student import router as StudentRouter
 
 app = FastAPI()
 
-origins = [
-    "https://c3streamfastapi.herokuapp.com",
-    "http://isaiambalam.herokuapp.com/items/",
-    "http://localhost",
-    "http://localhost:8000",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+token_listener = JWTBearer()
 
 
-
-@app.get("/")
-async def main():
-    return {"message": "Hello World"}
-
+@app.on_event("startup")
+async def start_database():
+    await initiate_database()
 
 
+@app.get("/", tags=["Root"])
+async def read_root():
+    return {"message": "Welcome to this fantastic app."}
 
-@app.get("/items/", response_class=ORJSONResponse)
-async def read_items():
-    return [{"item_id": "Foo"}]
+
+app.include_router(AdminRouter, tags=["Administrator"], prefix="/admin")
+app.include_router(StudentRouter, tags=["Students"], prefix="/student", dependencies=[Depends(token_listener)])
