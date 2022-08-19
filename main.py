@@ -15,7 +15,7 @@ origins = [
     "https://c3streamfastapi.herokuapp.com",
     "http://isaiambalam.herokuapp.com/items/",
     "http://localhost",
-    "http://localhost:8080",
+    "http://localhost:8000",
 ]
 
 app.add_middleware(
